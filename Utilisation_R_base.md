@@ -19,9 +19,9 @@ Vous devez d'abord télécharger :
 
 # 1. Ouverture de votre fichier Excel
 
-### 1.1 - Enregistrement le fichier de données au format .csv 
+### 1.1 - Enregistrer le fichier de données au format .csv 
   
-Pour ouvrir votre fichier de données sur RStudio, il faut l'enregistrer dans un format **.csv**. 
+Pour ouvrir votre fichier de données sur RStudio, il faut l'enregistrer dans un certain format, prenons ici le format **.csv**. 
 
 ➥ Fichier > Enregistrer sous > Type ==> CSV (séparateur : point virgule). 
 
@@ -46,11 +46,12 @@ Aller dans Session > Set Working Directory > Choose Directory ... ou Ctrl+Shift+
 Aller dans le répertoire de travail où se trouve votre fichier de données. 
 
 ### 1.3 - Ouvrir le fichier .csv
-Vous allez utiliser la commande `read.csv()`, et lui renseigner trois informations :
+Pour lire votre fichier dans RStudio, vous allez utiliser la commande `read.csv()`, et y renseigner trois informations :
 
 1. Le nom de votre fichier avec `file = "le_nom_de_votre_fichier.csv"`.
 2. Le type de séparateur entre vos colonnes avec `sep = ";"`. Ici vous avez un **;** car vous avez enregistrer votre fichier au format **CSV (séparateur : point virgule)**. 
-3. Le caractère utilisé dans votre tableau pour rentrer les chiffres décimaux (chiffres à virgule) avec `dec = "," `. 
+3. Le caractère utilisé dans votre tableau pour rentrer les chiffres décimaux (chiffres à virgule) <br>
+avec `dec = "," ` si vous avez utilisé une virgule (format français) et `dec = "."`si vous avez utilisé un point (format anglais).
 
 
 ```r
@@ -71,7 +72,7 @@ head(data)
 ## 6 GP_t_06          1      b          7.1          5.7          1.2
 ```
 
-La première étape est terminée ! <br>
+La première étape est terminée ! :facepunch::clap: <br>
 ![Alt Text](https://media.giphy.com/media/vvbGMpbhZMcHSsD50w/giphy.gif)
 
 # 2. Manipulation du tableau de données.
@@ -79,6 +80,8 @@ La première étape est terminée ! <br>
 ### 2.1 - Sélectionner certaines lignes/colonnes. 
 Il y a deux façons de sélectionner des lignes/colonnes. Soit en indiquant le numéro de la colonne, soit en indiquant le nom de la colonne que vous voulez. 
 Dans les deux cas, il faudra utiliser la syntaxe suivante : <br> `nom_tableau[n°ligne, n°colonne]` ou `nom_tableau["nom ligne", "nom colonne"]`. 
+
+<br>
 
 **Si vous voulez sélectionner la colonne n°2 de votre tableau : **
 
@@ -91,7 +94,7 @@ data[, 2]
 ```
 
 ```r
-data[, "traitement"]
+data[, "traitement"] # le nom de la seconde colonne est traitement
 ```
 
 ```
@@ -106,6 +109,7 @@ data$traitement # le $ est une sorte de raccourci pour dire colonne
 ##  [1] 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0
 ```
 
+<br>
 **Si vous voulez toutes les informations de votre individu n°5 :**
 
 ```r
@@ -118,7 +122,7 @@ data[5, ]
 ```
 
 ```r
-data["5", ]
+data["5", ] # ici le nom de la 5ème ligne est 5.
 ```
 
 ```
@@ -126,6 +130,7 @@ data["5", ]
 ## 5 GP_t_05          1      b          6.7          5.4          1.8
 ```
 
+<br>
 **Si vous voulez sélectionner la masse (colonne n°6) de l'individus n°3 : **
 
 ```r
@@ -148,7 +153,7 @@ data[3, "poids_animal"]
 
 Dans certains cas, vous allez devoir faire de petits calculs, comme la quantité de nourriture ingérée. <br>
 
-Il faut donc dire à l'ordinateur que vous voulez créer une nouvelle colonne **conso_tot** dans le tableau **data** via `data$conso_tot`. Cette nouvelle colonne est égale à la masse de nourriture avant l'expérience `data$poids_sec_av` moins la masse de nourriture après l'expérience `data$poids_sec_ap`. <br>
+Il faut donc dire à l'ordinateur que vous voulez créer une nouvelle colonne **conso_tot** dans le tableau **data** via `data$conso_tot`. Cette nouvelle colonne est égale à la masse de nourriture avant l'expérience soit `data$poids_sec_av` moins la masse de nourriture après l'expérience, soit `data$poids_sec_ap`. <br>
 En langage R, ça donne :
 
 
@@ -167,7 +172,7 @@ head(data)
 ## 6 GP_t_06          1      b          7.1          5.7          1.2       1.4
 ```
 
-De la même façon,vous pouvez calculer la consommation par unité de masse :
+De la même façon, vous pouvez calculer la consommation par unité de masse :
 
 ```r
 data$conso_masse <- (data$poids_sec_av - data$poids_sec_ap)/data$poids_animal
@@ -194,19 +199,25 @@ head(data)
 # 3. Production des figures
 
 Pour illustrer vos résultats, il existe de multiples types de graphiques!
-Sur ce site (<https://www.r-graph-gallery.com/index.html>) vous trouverez de nombreuses idées et la façon de les coder. Pour chaque type de graphique, il y a deux façons de les coder: soit en utilisant un outil particulier qui s'appelle **ggplot2** soit en codant en **base R** comme on fait depuis le début du tutoriel. Dans un premier temps nous vous recommendons de suivre la version de code **base R** lorsque les deux sont proposées 💡
+Sur ce site (:pray:<https://www.r-graph-gallery.com/index.html>:pray:) vous trouverez de nombreuses idées et la façon de les coder. Pour chaque type de graphique, il y a deux façons de les coder : soit en utilisant un outil particulier qui s'appelle **ggplot2** soit en codant en **base R** comme on fait depuis le début du tutoriel. Dans un premier temps nous vous recommendons de suivre la version de code **base R** lorsque les deux sont proposées 💡
 <br>
 
 ### 3.1 Produire un nuage de points 
 
-La fonction `plot()` vous permet de construire un nuage de point en utilisant deux colonnes de votre tableau. la syntaxe est la suivante <br>
-`plot(x = variable_à_mettre_en_abscisse, y = variable_à_mettre_en_ordonnées)` .
+La fonction `plot()` vous permet de construire un nuage de point en utilisant deux colonnes de votre tableau. La syntaxe est la suivante <br>
+`plot(x = variable_à_mettre_en_abscisse, y = variable_à_mettre_en_ordonnées)`.
 <br>
 
-De plus, vous pouvez utiliser de multiples arguments afin de changer les couleurs, les formes (etc.) utilisées dans le graphique. Par exemple, l'argument `cex`permet de spécifier la taille des symboles utilisés, les arguments `xlim` et `ylim` permettent de fixer les limites des axes x et y, les arguments `xlab`et `ylab` permettent de fixer le nom des axes x et y, l'argument `col` permet de fixer la couleur des points (voici une liste des possibles couleurs dans R: <http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>), l'argument `main` permet de donner un titre au graphique et l'argument `pch{ permet de choisir la forme des points (cercles, carrés, losanges...)
+De plus, vous pouvez utiliser de multiples arguments afin de changer les couleurs, les formes (etc.) utilisées dans le graphique. Par exemple : 
+
+- l'argument `cex` permet de spécifier la taille des symboles utilisés.
+- les arguments `xlim` et `ylim` permettent de fixer les limites des axes x et y.
+- les arguments `xlab` et `ylab` permettent de fixer le nom des axes x et y.
+- l'argument `col` permet de fixer la couleur des points (voici une liste des possibles couleurs dans R: <http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>). 
+- l'argument `pch` permet de choisir la forme des points (cercles, carrés, losanges...).
 <br>
 
-Avec les données de l'exemple, nous pouvons représenter le nuage de points de la consommation par unité de masse en fonction de la masse de nourriture avant l'expérience avant même si ce n'est pas très intéressant (mais pour vous montrer sur un exemple concret comme ça se code):
+Avec les données de l'exemple, nous pouvons représenter le nuage de points de la consommation par unité de masse en fonction de la masse de nourriture avant l'expérience, même si ce n'est pas très intéressant (mais pour vous montrer sur un exemple concret de comment ça se code):
 
 
 ```r
@@ -215,8 +226,9 @@ plot(x = data$poids_sec_av, y = data$poids_sec_ap,
      pch = 18, 
      cex = 1, 
      col = "aquamarine3",
-     xlab = "Masse nourriture avant", ylab = "Masse nourriture après",
-     main = "Masse de nourriture après en fonction \n de la masse de nourriture avant l'expérience")
+     xlab = "Masse nourriture avant (g)", 
+     ylab = "Masse nourriture après (g)",
+     main = "NE PAS METTRE DE TITRE ! \n Le titre va en-dessous de la figure dans votre rapport")
 ```
 
 ![](Utilisation_R_base_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
@@ -224,9 +236,9 @@ plot(x = data$poids_sec_av, y = data$poids_sec_ap,
 
 ### 3.2 - Insérer une courbe de régression (et calculer un coefficient de corrélation)
 
-#### 3.2.1 - Insérer une courbe de régression
+#### 3.2.1 - Insérer une courbe de régression 
 
-Pour créér une ligne de régression qui modélise les données, il faut créer un modèle de régression. Ici nous resterons sur les modèles linéaires (de la forme y = ax + b). 
+Pour créer une ligne de régression qui modélise les données, il faut créer un modèle de régression. Ici nous resterons sur les modèles linéaires (de la forme y = ax + b). 
 <br>
 
 Pour créer le modèle on utilise la fonction `lm()` (pour **L**inear **M**odel). Sa syntaxe est la suivante:<br>
@@ -239,8 +251,7 @@ Pour créer le modèle on utilise la fonction `lm()` (pour **L**inear **M**odel)
 model <- lm(data$poids_sec_ap ~ data$poids_sec_av)
 ```
 
-Une fois le modèle de régression créé, il faut regarder les propriétés du modèle, notamment combien de variation de la variable que je cherche à expliquer (celle qui est en y) notre modèle explique. On fait ça en regardant la valeur du R2. Le R2 exprime **le pourcentage de variation de la variable y expliqué par le modèle**. Donc plus le R2 est grand, plus le modèle explique bien la variation observée  💡 Pour aller chercher la valeur de R2, on utilise la commande <br>
-`nom_du_modèle$adj.r.squared`<br>
+Une fois le modèle de régression créé, il faut regarder les propriétés du modèle, notamment combien de variation de la variable que je cherche à expliquer (celle qui est en y) notre modèle explique. On fait ça en regardant la valeur du R². Le R² exprime **le pourcentage de variation de la variable y expliqué par le modèle**. Donc plus le R² est grand, plus le modèle explique bien la variation observée. Pour aller chercher la valeur de R², on utilise la commande `nom_du_modèle$adj.r.squared`<br>
 
 On peut ensuite regarder les coefficients du modèle, c'est-à-dire la valeur de la pente et la valeur de l'ordonnée à l'origine.
 <br>
@@ -249,7 +260,7 @@ On peut ensuite regarder les coefficients du modèle, c'est-à-dire la valeur de
 ```r
 # 2/ on regarde les propriétés de ce modèle:
 
-## le R2 qui exprime le pourcentage de variation de y qui est expliqué par le modèle:
+## le R² qui exprime le pourcentage de variation de y qui est expliqué par le modèle:
 summary(model)$adj.r.squared
 ```
 
@@ -272,14 +283,16 @@ Une fois les proriétés du modèle vérifiées, on peut afficher la droite de r
 
 
 ```r
-# 3/ On peut ensuite refaire le graphique précédent en ajoutant la droite de régression grace à la fonction abline():
+# 3/ On peut ensuite refaire le graphique précédent en ajoutant la droite de régression 
+# grace à la fonction abline():
 plot(x = data$poids_sec_av, y = data$poids_sec_ap,
      xlim = c(0, 8), ylim = c(0, 8), 
      pch = 18, 
      cex = 1, 
      col = "aquamarine3",
-     xlab = "Masse nourriture avant", ylab = "Masse nourriture après",
-     main = "Masse de nourriture après l'expérience \n en fonction de la masse de nourriture avant")
+     xlab = "Masse nourriture avant (g)", 
+     ylab = "Masse nourriture après (g)",
+     main = "NE PAS METTRE DE TITRE ! \n Le titre va en-dessous de la figure dans votre rapport")
 abline(model, col = "red")
 ```
 
@@ -288,10 +301,11 @@ abline(model, col = "red")
 
 #### 3.2.2 - Calculer un coefficient de corrélation
 
-Pour calculer le coefficient de correlation entre deux variables, il faut utiliser la fonction `cor()` suivant la syntaxe suivante:<br>
- `cor(variable_1 , variable_2, method = c("pearson"))`. Ici on utilise un coefficient de pearson car les deux variables à étudier sont continues.<br>
+Pour calculer le coefficient de corrélation entre deux variables, il faut utiliser la fonction `cor()` via la syntaxe suivante :<br>
+ `cor(variable_1 , variable_2, method = c("pearson"))`. <br>
+ Ici on utilise un coefficient de pearson car les deux variables à étudier sont continues.<br>
 
-💡 **Correlation n'est pas causalité! **
+:warning: **Correlation n'est pas causalité! **	:warning:
 
 
 ```r
@@ -309,8 +323,11 @@ Pour produire un histogramme, on utilise la fonction `hist()`. Les arguments pou
 <br>
 
 ```r
-hist(data$poids_sec_av, col = "aquamarine3", main = "Fréquences des masses sèches avant", 
-     xlab = "masses sèches (en g)", ylab = "Fréquence")
+hist(data$poids_sec_av, 
+     col = "aquamarine3", 
+     main = "TOUJOURS PAS DE TITRE ICI", 
+     xlab = "masses sèches (en g)", 
+     ylab = "Fréquence")
 ```
 
 ![](Utilisation_R_base_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
@@ -329,15 +346,19 @@ Les arguments pour le titre, la couleur et le nom des axes sont les mêmes que c
 
 
 ```r
-boxplot(data$conso_masse ~ data$espece, col = "aquamarine3", 
-        main = "Consommation en fonction des espèces", xlab = "espèces", 
-        ylab = "Consommation par unité de masse")
+boxplot(data$conso_masse ~ data$espece, 
+        col = "aquamarine3", 
+        main = "TOUJOURS PAS !!!", 
+        xlab = "espèces", 
+        ylab = "Consommation par unité de masse (g/individus)")
 ```
 
 ![](Utilisation_R_base_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 <br>
 
-Voilà, vous êtes arrivés à l'étape finale des graphiques! 
+Encore une fois, il est possible de faire des figures via `ggplot2`. Vous trouverez votre bonheur ici ==> :pray:<https://www.r-graph-gallery.com/index.html>:pray:
+
+:tada: Voilà, vous êtes arrivés à l'étape finale des graphiques ! :tada:
 <br>
 
 ![Alt Text](https://media.giphy.com/media/xT77XWum9yH7zNkFW0/giphy.gif)
