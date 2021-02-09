@@ -36,6 +36,7 @@ Vous pouvez utiliser la commande `setwd()` : **set** pour **définir** et **wd**
 
 
 ```r
+#setwd("C:/Users/camil/Camille/1_These/5_Monitorat/R_Github_repo/Aide_R_cours")
 setwd("C:/Users/gael-/Dropbox/PhD/Enseignements/HLBE405")
 ```
 
