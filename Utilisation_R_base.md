@@ -2,7 +2,7 @@
 title: "Parce que c'est votre projet, utilisez RStudio !"
 author: "Camille Magneville & Gaël Mariani"
 date: "2021-02-09"
-output: 
+output:
   html_document:
     keep_md: yes
 ---
@@ -72,7 +72,7 @@ head(data)
 ## 6 GP_t_06          1      b          7.1          5.7          1.2
 ```
 
-La première étape est terminée ! :facepunch::clap: <br>
+La première étape est terminée ! <br>
 ![Alt Text](https://media.giphy.com/media/vvbGMpbhZMcHSsD50w/giphy.gif)
 
 # 2. Manipulation du tableau de données.
@@ -199,7 +199,7 @@ head(data)
 # 3. Production des figures
 
 Pour illustrer vos résultats, il existe de multiples types de graphiques!
-Sur ce site (:pray:<https://www.r-graph-gallery.com/index.html>:pray:) vous trouverez de nombreuses idées et la façon de les coder. Pour chaque type de graphique, il y a deux façons de les coder : soit en utilisant un outil particulier qui s'appelle **ggplot2** soit en codant en **base R** comme on fait depuis le début du tutoriel. Dans un premier temps nous vous recommendons de suivre la version de code **base R** lorsque les deux sont proposées 💡
+Sur ce site (<https://www.r-graph-gallery.com/index.html>) vous trouverez de nombreuses idées et la façon de les coder. Pour chaque type de graphique, il y a deux façons de les coder : soit en utilisant un outil particulier qui s'appelle **ggplot2** soit en codant en **base R** comme on fait depuis le début du tutoriel. Dans un premier temps nous vous recommendons de suivre la version de code **base R** lorsque les deux sont proposées 💡
 <br>
 
 ### 3.1 Produire un nuage de points 
@@ -305,7 +305,7 @@ Pour calculer le coefficient de corrélation entre deux variables, il faut utili
  `cor(variable_1 , variable_2, method = c("pearson"))`. <br>
  Ici on utilise un coefficient de pearson car les deux variables à étudier sont continues.<br>
 
-:warning: **Correlation n'est pas causalité! **	:warning:
+ **Correlation n'est pas causalité! **
 
 
 ```r
@@ -356,9 +356,9 @@ boxplot(data$conso_masse ~ data$espece,
 ![](Utilisation_R_base_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 <br>
 
-Encore une fois, il est possible de faire des figures via `ggplot2`. Vous trouverez votre bonheur ici ==> :pray:<https://www.r-graph-gallery.com/index.html>:pray:
+Encore une fois, il est possible de faire des figures via `ggplot2`. Vous trouverez votre bonheur ici ==> <https://www.r-graph-gallery.com/index.html>
 
-:tada: Voilà, vous êtes arrivés à l'étape finale des graphiques ! :tada:
+ Voilà, vous êtes arrivés à l'étape finale des graphiques ! 
 <br>
 
 ![Alt Text](https://media.giphy.com/media/xT77XWum9yH7zNkFW0/giphy.gif)

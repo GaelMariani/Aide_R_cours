@@ -3,7 +3,6 @@ title: "Parce que c'est votre projet, utilisez RStudio !"
 author: "Camille Magneville & Gaël Mariani"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
   html_document:
     keep_md: yes
 ---
@@ -63,7 +62,7 @@ data <- read.csv(file = "exemple.csv",
 head(data)
 ```
 
-La première étape est terminée ! :facepunch::clap: <br>
+La première étape est terminée ! <br>
 ![Alt Text](https://media.giphy.com/media/vvbGMpbhZMcHSsD50w/giphy.gif)
 
 # 2. Manipulation du tableau de données.
@@ -116,7 +115,7 @@ head(data)
 # 3. Production des figures
 
 Pour illustrer vos résultats, il existe de multiples types de graphiques!
-Sur ce site (:pray:<https://www.r-graph-gallery.com/index.html>:pray:) vous trouverez de nombreuses idées et la façon de les coder. Pour chaque type de graphique, il y a deux façons de les coder : soit en utilisant un outil particulier qui s'appelle **ggplot2** soit en codant en **base R** comme on fait depuis le début du tutoriel. Dans un premier temps nous vous recommendons de suivre la version de code **base R** lorsque les deux sont proposées 💡
+Sur ce site (<https://www.r-graph-gallery.com/index.html>) vous trouverez de nombreuses idées et la façon de les coder. Pour chaque type de graphique, il y a deux façons de les coder : soit en utilisant un outil particulier qui s'appelle **ggplot2** soit en codant en **base R** comme on fait depuis le début du tutoriel. Dans un premier temps nous vous recommendons de suivre la version de code **base R** lorsque les deux sont proposées 💡
 <br>
 
 ### 3.1 Produire un nuage de points 
@@ -204,7 +203,7 @@ Pour calculer le coefficient de corrélation entre deux variables, il faut utili
  `cor(variable_1 , variable_2, method = c("pearson"))`. <br>
  Ici on utilise un coefficient de pearson car les deux variables à étudier sont continues.<br>
 
-:warning: **Correlation n'est pas causalité! **	:warning:
+ **Correlation n'est pas causalité! **
 
 ```{r}
 cor(data$poids_sec_av, data$poids_sec_ap, method = c("pearson"))
@@ -244,9 +243,9 @@ boxplot(data$conso_masse ~ data$espece,
 ```
 <br>
 
-Encore une fois, il est possible de faire des figures via `ggplot2`. Vous trouverez votre bonheur ici ==> :pray:<https://www.r-graph-gallery.com/index.html>:pray:
+Encore une fois, il est possible de faire des figures via `ggplot2`. Vous trouverez votre bonheur ici ==> <https://www.r-graph-gallery.com/index.html>
 
-:tada: Voilà, vous êtes arrivés à l'étape finale des graphiques ! :tada:
+ Voilà, vous êtes arrivés à l'étape finale des graphiques ! 
 <br>
 
 ![Alt Text](https://media.giphy.com/media/xT77XWum9yH7zNkFW0/giphy.gif)
