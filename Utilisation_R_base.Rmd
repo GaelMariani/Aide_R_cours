@@ -248,8 +248,6 @@ boxplot(data$conso_masse ~ data$espece,
 Encore une fois, il est possible de faire des figures via `ggplot2`. Vous trouverez votre bonheur ici ==> <https://www.r-graph-gallery.com/index.html>
 
  Voilà, vous êtes arrivés à l'étape finale des graphiques ! 
-<br>
-
 ![Alt Text](https://media.giphy.com/media/xT77XWum9yH7zNkFW0/giphy.gif)
 
-
+BRAVO !!!
