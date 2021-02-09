@@ -110,6 +110,7 @@ data$traitement # le $ est une sorte de raccourci pour dire colonne
 ```
 
 <br>
+
 **Si vous voulez toutes les informations de votre individu n°5 :**
 
 ```r
@@ -131,6 +132,7 @@ data["5", ] # ici le nom de la 5ème ligne est 5.
 ```
 
 <br>
+
 **Si vous voulez sélectionner la masse (colonne n°6) de l'individus n°3 :**
 
 ```r
