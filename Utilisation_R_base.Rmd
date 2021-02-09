@@ -73,7 +73,7 @@ Dans les deux cas, il faudra utiliser la syntaxe suivante : <br> `nom_tableau[n�
 
 <br>
 
-**Si vous voulez sélectionner la colonne n°2 de votre tableau : **
+**Si vous voulez sélectionner la colonne n°2 de votre tableau :**
 ```{r}
 data[, 2]
 data[, "traitement"] # le nom de la seconde colonne est traitement
@@ -88,7 +88,7 @@ data["5", ] # ici le nom de la 5ème ligne est 5.
 ```
 
 <br>
-**Si vous voulez sélectionner la masse (colonne n°6) de l'individus n°3 : **
+**Si vous voulez sélectionner la masse (colonne n°6) de l'individus n°3 :**
 ```{r}
 data[3, 6]
 data[3, "poids_animal"]
